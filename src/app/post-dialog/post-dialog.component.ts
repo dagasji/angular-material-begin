@@ -8,6 +8,7 @@ import {DataService} from '../data/data.service';
   styleUrls: ['./post-dialog.component.css']
 })
 export class PostDialogComponent {
+  
   blogPost = {
     title: '',
     body: '',
@@ -22,6 +23,12 @@ export class PostDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dataService: DataService
   ) {
+
+    if (data != null) {
+      this.blogPost.body = data.body;
+      this.blogPost.title = data.title;
+      this.blogPost.category = data.category;
+    }
   }
 
   onNoClick(): void {
@@ -30,6 +37,7 @@ export class PostDialogComponent {
 
   onSubmit(): void {
     this.blogPost.position = this.dataService.dataLength();
+    alert(this.blogPost.category);
     this.event.emit({data: this.blogPost});
     this.dialogRef.close();
   }

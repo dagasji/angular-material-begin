@@ -31,6 +31,10 @@ export class DataService {
     return this.categories;
   }
 
+  getElemento(index) {
+    return this.ELEMENT_DATA[index];
+  }
+
   addPost(data) {
     this.ELEMENT_DATA.push(data);
   }

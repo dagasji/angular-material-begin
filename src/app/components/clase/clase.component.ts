@@ -1,20 +1,20 @@
-import {Component} from '@angular/core';
-import {DataService} from '../data/data.service';
-import {Post} from '../Post';
+import { Component, OnInit } from '@angular/core';
+import {DataService} from '../../data/data.service';
+import {Post} from '../../Post';
 import {DataSource} from '@angular/cdk/table';
 import {Observable} from 'rxjs/Observable';
-import {AuthService} from '../auth.service';
-import {PostDialogComponent} from '../post-dialog/post-dialog.component';
+import {AuthService} from '../../auth.service';
+import {PostDialogComponent} from '../../post-dialog/post-dialog.component';
 import {MatDialog} from '@angular/material';
 import { element } from 'protractor';
 
-
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-clase',
+  templateUrl: './clase.component.html',
+  styleUrls: ['./clase.component.scss']
 })
-export class DashboardComponent {
+export class ClaseComponent implements OnInit {
+
   constructor(public auth: AuthService, public dialog: MatDialog, private dataService: DataService) {
   }
 
@@ -53,6 +53,9 @@ export class DashboardComponent {
       this.dataService.addPost(result.data);
       this.dataSource = new PostDataSource(this.dataService);
     });
+  }
+
+  ngOnInit() {
   }
 
 }

@@ -20,6 +20,7 @@ import { PostDialogComponent } from './post-dialog/post-dialog.component';
 
 import { DataService } from './data/data.service';
 import { AuthService } from './auth.service';
+import { ClaseComponent } from './components/clase/clase.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { AuthService } from './auth.service';
     Componente2Component,
 	  WelcomeComponent,
     DashboardComponent,
-	  PostDialogComponent
+	  PostDialogComponent,
+	  ClaseComponent
   ],
   imports: [
     BrowserModule,
