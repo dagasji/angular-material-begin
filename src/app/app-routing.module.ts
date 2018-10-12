@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 
-import {ClaseComponent} from './components/clase/clase.component';
+import {ClaseGestionComponent} from './components/clases/clase-gestion/clase-gestion.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'test', component: DashboardComponent},
-  {path: 'classroom', component: ClaseComponent}
+  {path: 'classroom', component: ClaseGestionComponent}
 ];
 
 @NgModule({

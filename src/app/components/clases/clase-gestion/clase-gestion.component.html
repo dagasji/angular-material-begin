@@ -5,7 +5,7 @@
       <div  fxLayout="column" fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
         <div class="blocks">
           <button button="submit" mat-raised-button color="primary" (click)="openDialog()">
-            <mat-icon>add</mat-icon> Add Post
+            <mat-icon>add</mat-icon> Nueva clase
           </button>
         </div>
         <div class="blocks">
@@ -24,18 +24,22 @@
           </mat-card-title>
           <mat-card-content>
             <div class="example-container mat-elevation-z8">
-              <mat-table #table [dataSource]="dataSource">
-                <ng-container matColumnDef="date_posted">
-                  <mat-header-cell *matHeaderCellDef> Date Posted </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.date_posted  | date: 'd/M/y'}} </mat-cell>
+              <mat-table #table [dataSource]="dataSource">                
+                <ng-container matColumnDef="curso">
+                  <mat-header-cell *matHeaderCellDef> Curso </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="title">
-                  <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+                <ng-container matColumnDef="anio">
+                  <mat-header-cell *matHeaderCellDef> Año </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.anio}} </mat-cell>
+                </ng-container>                
+                <ng-container matColumnDef="tipoClase" >
+                  <mat-header-cell *matHeaderCellDef > Tipo </mat-header-cell>
+                  <mat-cell *matCellDef="let element" > {{element.tipoClase.descripcion}} </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="category" >
-                  <mat-header-cell *matHeaderCellDef  fxHide.xs> Category </mat-header-cell>
-                  <mat-cell *matCellDef="let element"  fxHide.xs> {{element.category}} </mat-cell>
+                <ng-container matColumnDef="fechaCreacion">
+                  <mat-header-cell *matHeaderCellDef fxHide.xs> Fecha creacion </mat-header-cell>
+                  <mat-cell *matCellDef="let element" fxHide.xs> {{element.fechaAlta  | date: 'd/M/y'}} </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="edit">
                   <mat-header-cell *matHeaderCellDef [ngClass]="'columnButton'"></mat-header-cell>
@@ -48,7 +52,7 @@
                 <ng-container matColumnDef="delete">
                   <mat-header-cell *matHeaderCellDef [ngClass]="'columnButton'"></mat-header-cell>
                   <mat-cell *matCellDef="let element" [ngClass]="'columnButton'">
-                    <a (click)="deletePost(element.position)" type="button">
+                    <a (click)="deleteClase(element.idClase)" type="button">
                       <mat-icon class="icon">delete</mat-icon>
                     </a>
                   </mat-cell>
