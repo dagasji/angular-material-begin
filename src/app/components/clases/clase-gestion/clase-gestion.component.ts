@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material';
 import { element } from 'protractor';
 import { Clase } from '../../../model/Clase';
 import { ClaseDetalleComponent } from '../clase-detalle/clase-detalle.component';
+import { DialogAceptarComponent } from '../../comun/dialog-aceptar/dialog-aceptar.component';
 
 @Component({
   selector: 'app-clase-gestion',
@@ -25,8 +26,16 @@ export class ClaseGestionComponent implements OnInit {
 
   deleteClase(id) {
     //if (this.auth.isAuthenticated()) {
-      this.dataService.deleteClase(id);
-      this.dataSource = new GestionClaseDataSource(this.dataService);
+
+      const dialogRef = this.dialog.open(DialogAceptarComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.info('resultado:' + result);
+        if (result == true) {
+          this.dataService.deleteClase(id);
+          this.dataSource = new GestionClaseDataSource(this.dataService);
+        }
+      });
     //} else {
       //alert('Login in Before');
     //}
@@ -42,12 +51,12 @@ export class ClaseGestionComponent implements OnInit {
       this.dataSource = new GestionClaseDataSource(this.dataService);
     });
   }
-/*
-  editPost(index): void {
+
+  editPost(id): void {
     
-    var elemento = this.dataService.getElemento(index);
+    var elemento = this.dataService.getClase(id);
     
-    let dialogRef = this.dialog.open(PostDialogComponent, {
+    let dialogRef = this.dialog.open(ClaseDetalleComponent, {
       width: '600px',
       data: elemento
     });
@@ -55,9 +64,9 @@ export class ClaseGestionComponent implements OnInit {
     //Este es el código que se ejecutará una vez se acepte la ventana
     dialogRef.componentInstance.event.subscribe((result) => {
       this.dataService.addPost(result.data);
-      this.dataSource = new PostDataSource(this.dataService);
+      this.dataSource = new GestionClaseDataSource(this.dataService);
     });
-  }*/
+  }
 
   ngOnInit() {
   }

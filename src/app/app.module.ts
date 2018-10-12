@@ -22,6 +22,7 @@ import { DataService } from './data/data.service';
 import { AuthService } from './auth.service';
 import { ClaseGestionComponent } from './components/clases/clase-gestion/clase-gestion.component';
 import { ClaseDetalleComponent } from './components/clases/clase-detalle/clase-detalle.component';
+import { DialogAceptarComponent } from './components/comun/dialog-aceptar/dialog-aceptar.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ClaseDetalleComponent } from './components/clases/clase-detalle/clase-d
     DashboardComponent,
 	  PostDialogComponent,
 	  ClaseGestionComponent,
-	  ClaseDetalleComponent
+	  ClaseDetalleComponent,
+	  DialogAceptarComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { ClaseDetalleComponent } from './components/clases/clase-detalle/clase-d
   bootstrap: [AppComponent],
   entryComponents: [
     PostDialogComponent, 
-    ClaseDetalleComponent
+    ClaseDetalleComponent,
+    DialogAceptarComponent
   ]
 })
 export class AppModule { }

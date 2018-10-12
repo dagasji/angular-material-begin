@@ -20,8 +20,7 @@ export class ClaseDetalleComponent {
     public dataService: DataService) {
 
     if (data != null) {
-      this.detalleClase.titulo = data.title;
-      this.detalleClase.descripcion = data.body;      
+      this.detalleClase = data;      
     }
     
   }
@@ -35,5 +34,9 @@ export class ClaseDetalleComponent {
     this.dialogRef.close();
   }
 
-  categories = this.dataService.getCategories();
+  tiposClase = this.dataService.getTipoClase();
+
+  compareObjects(o1: any, o2: any): boolean {    
+    return o1 != null && o2 != null && o1.id === o2.id;
+  }
 }

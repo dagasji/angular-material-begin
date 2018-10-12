@@ -21,13 +21,18 @@ export class DataService {
     {value: 'IOS-Development', viewValue: 'IOS Development'}
   ];
 
+  tipoClases = [
+    {id: 1, descripcion: 'Primaria'},
+    {id: 2, descripcion: 'Secundaria'}
+  ];
+
   ELEMENT_CLASES: Clase[] = [
-    {idClase : 1, titulo: '3º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
-    {idClase : 1, titulo: '3º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
-    {idClase : 1, titulo: '3º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
-    {idClase : 1, titulo: '3º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
-    {idClase : 1, titulo: '3º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
-    {idClase : 2, titulo: '1º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''}
+    {idClase : 1, titulo: '1º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : 'descripcion 1'},
+    {idClase : 2, titulo: '2º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
+    {idClase : 3, titulo: '3º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
+    {idClase : 4, titulo: '4º A', anio : '2018', tipoClase: {id : 2, descripcion : 'Secudaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
+    {idClase : 5, titulo: '5º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''},
+    {idClase : 6, titulo: '6º A', anio : '2018', tipoClase: {id : 1, descripcion : 'Primaria'}, fechaAlta: new Date(), fechaModificacion : null, descripcion : ''}
   ];
 
   constructor() {
@@ -39,6 +44,10 @@ export class DataService {
 
   getCategories() {
     return this.categories;
+  }
+
+  getTipoClase() {
+    return this.tipoClases;
   }
 
   getElemento(index) {
@@ -79,5 +88,9 @@ export class DataService {
     
     this.ELEMENT_CLASES.push(data);
     alert(data.descripcion);
+  }
+
+  getClase(id) {
+    return this.ELEMENT_CLASES.filter(x => x.idClase == id)[0];    
   }
 }

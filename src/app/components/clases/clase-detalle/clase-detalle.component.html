@@ -2,21 +2,27 @@
 <div mat-dialog-content>
   <form class="example-form" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <input matInput placeholder="Post Title" type="text" required [(ngModel)]="detalleClase.titulo" name="name">
+      <input matInput placeholder="Título" type="text" required [(ngModel)]="detalleClase.titulo" name="titulo">
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput placeholder="Post Body" required [(ngModel)]="detalleClase.descripcion" name="body"></textarea>
+      <input matInput placeholder="Año" type="text" required [(ngModel)]="detalleClase.anio" name="anio">
     </mat-form-field>
     <mat-form-field>
-      <mat-select matInput placeholder="Post Category" required [(ngModel)]="detalleClase.descripcion" name="category">
-        <mat-option *ngFor="let cat of categories" [value]="cat.value">
-          {{ cat.viewValue }}
+      <textarea matInput placeholder="Descripción" required [(ngModel)]="detalleClase.descripcion" name="descripcion"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select matInput placeholder="Tipo de clase" 
+        required [(ngModel)]="detalleClase.tipoClase" 
+        name="category"
+        [compareWith]="compareObjects">
+        <mat-option *ngFor="  let tipo of tiposClase" [value]="tipo">
+          {{ tipo.descripcion }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button type="submit" color="primary">Save</button>
+    <button mat-raised-button type="submit" color="primary">Acepar</button>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button class="close" (click)="onNoClick()" color="warn">Cancel</button>
+  <button mat-raised-button class="close" (click)="onNoClick()" color="warn">Cancelar</button>
 </div>

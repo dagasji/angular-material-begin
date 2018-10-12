@@ -44,7 +44,7 @@
                 <ng-container matColumnDef="edit">
                   <mat-header-cell *matHeaderCellDef [ngClass]="'columnButton'"></mat-header-cell>
                   <mat-cell *matCellDef="let element" [ngClass]="'columnButton'">
-                    <a (click)="editPost(element.position)" type="button">
+                    <a (click)="editPost(element.idClase)" type="button">
                       <mat-icon class="icon">edit</mat-icon>
                     </a>
                   </mat-cell>
