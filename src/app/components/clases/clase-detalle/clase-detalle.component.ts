@@ -16,7 +16,7 @@ export class ClaseDetalleComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ClaseDetalleComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Clase,
     public dataService: DataService) {
 
     if (data != null) {
@@ -30,6 +30,7 @@ export class ClaseDetalleComponent {
   }
 
   onSubmit(): void {  
+    this.detalleClase.fechaModificacion = new Date();
     this.event.emit({data: this.detalleClase});
     this.dialogRef.close();
   }

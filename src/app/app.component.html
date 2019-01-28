@@ -66,9 +66,10 @@
           </li>
           <li>
             <a
-              routerLink="/dashboard">
-              <mat-icon class="icon">dashboard</mat-icon>
-              <span class="label">Dashboard</span>
+              *ngIf="!auth.isAuthenticated()"
+              routerLink="/alumno">
+              <mat-icon class="icon">face</mat-icon>
+              <span class="label">Alumnos</span>
             </a>
           </li>
           <li>

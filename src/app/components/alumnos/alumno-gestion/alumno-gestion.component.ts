@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../../data/data.service';
-
-import {DataSource} from '@angular/cdk/table';
-import {Observable} from 'rxjs/Observable';
-import {AuthService} from '../../../auth.service';
-
-import {MatDialog} from '@angular/material';
-import { element } from 'protractor';
-import { Clase } from '../../../model/Clase';
-import { ClaseDetalleComponent } from '../clase-detalle/clase-detalle.component';
-import { DialogAceptarComponent } from '../../comun/dialog-aceptar/dialog-aceptar.component';
+import { AlumnoMockService } from 'src/app/services/mocks/data.service';
+import { MatDialog, MatTableDataSource } from '@angular/material';
+import { DataSource } from '@angular/cdk/table';
+import { Alumno } from 'src/app/model/Alumno';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-clase-gestion',
-  templateUrl: './clase-gestion.component.html',
-  styleUrls: ['./clase-gestion.component.scss']
+  selector: 'app-alumno-gestion',
+  templateUrl: './alumno-gestion.component.html',
+  styleUrls: ['./alumno-gestion.component.scss']
 })
-export class ClaseGestionComponent implements OnInit {
+export class AlumnoGestionComponent implements OnInit {
 
-  constructor(public auth: AuthService, public dialog: MatDialog, private dataService: DataService) {
+  filtro : string;
+  filtroAlumno : FiltroAlumno;
+
+  ngOnInit() {
   }
 
-  displayedColumns = ['curso', 'anio', 'tipoClase', 
-                    'fechaCreacion', 'edit', 'editAlumnos', 
-                    'delete'];
-                    
-  dataSource = new GestionClaseDataSource(this.dataService);
+  constructor(public dialog: MatDialog, private dataService: AlumnoMockService) {
+    this.filtroAlumno = new FiltroAlumno();
+  }
 
+  displayedColumns = ['nombre', 'apellidos', 'fechaNacimiento', 'edit', 'delete'];
+                    
+  dataSource = new GestionAlumnoDataSource(this.dataService);
+
+  onSubmit(): void {
+    this.dataSource = new GestionAlumnoDataSource(this.dataService)  
+    this.dataSource.filtro = this.filtroAlumno;
+   // this.dataSource.connect();
+  }
+/*
   deleteClase(id) {
     //if (this.auth.isAuthenticated()) {
 
@@ -42,7 +47,7 @@ export class ClaseGestionComponent implements OnInit {
       //alert('Login in Before');
     //}
   }
-
+/*
   openDialog() : void {
     let dialogRef = this.dialog.open(ClaseDetalleComponent, {
       width: '600px'      
@@ -54,8 +59,8 @@ export class ClaseGestionComponent implements OnInit {
       this.dataService.addClase(result.data);
       this.dataSource = new GestionClaseDataSource(this.dataService);
     });
-  }
-
+  }*/
+/*
   editPost(id): void {
     
     var elemento = this.dataService.getClase(id);
@@ -71,21 +76,37 @@ export class ClaseGestionComponent implements OnInit {
       this.dataSource = new GestionClaseDataSource(this.dataService);
     });
   }
-
-  ngOnInit() {
-  }
+*/
+ 
 
 }
 
-export class GestionClaseDataSource extends DataSource<any> {
-  constructor(private dataService: DataService) {
+export class GestionAlumnoDataSource extends DataSource<any> {
+
+  filtro : FiltroAlumno;
+
+  constructor(private dataService: AlumnoMockService) {
     super();
   }
 
-  connect(): Observable<Clase[]> {
-    return this.dataService.getListClases();
+  connect(): Observable<Alumno[]> {
+    console.info('entro en listar');
+    return this.dataService.getListAlumnos(this.filtro);
   }
 
   disconnect() {
   }
 }
+
+export class FiltroAlumno {
+
+  nombre : string;
+  apellidos : string
+  anioNacimiento : string;
+
+  constructor() {
+
+  }
+}
+
+

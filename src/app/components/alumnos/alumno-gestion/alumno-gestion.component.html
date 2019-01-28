@@ -1,0 +1,64 @@
+<div>
+  <br>
+  <div class="container">
+    <div class="container">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card" >
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <h3>Gestión alumnos</h3>
+          </mat-card-title>
+          <mat-card-content>
+            <div mat-dialog-content>
+              <form class="example-form" (ngSubmit)="onSubmit()">
+                  <mat-form-field style="margin-right: 15px"> 
+                    <input matInput placeholder="Nombre" type="text" [(ngModel)]="filtroAlumno.nombre" name="nombre">
+                  </mat-form-field>
+                  <mat-form-field style="margin-right: 15px"> 
+                      <input matInput placeholder="Apellidos" type="text" [(ngModel)]="filtroAlumno.apellidos" name="apellidos">
+                    </mat-form-field>
+                  <mat-form-field style="margin-right: 15px">
+                      <input matInput placeholder="Año nacimiento" type="text" [(ngModel)]="filtroAlumno.anioNacimiento" name="anioNacimiento">
+                  </mat-form-field>
+                  <button mat-raised-button type="submit" color="primary">Buscar</button>
+              </form>
+            </div>
+            <div class="example-container mat-elevation-z8">
+              <mat-table #table [dataSource]="dataSource">                
+                <ng-container matColumnDef="nombre">
+                  <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="apellidos">
+                  <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.apellidos}} </mat-cell>
+                </ng-container>                
+                <ng-container matColumnDef="fechaNacimiento" >
+                  <mat-header-cell *matHeaderCellDef > Fecha nacimiento </mat-header-cell>
+                  <mat-cell *matCellDef="let element" > {{element.fechaNacimiento | date: 'd/M/y'}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="edit">
+                  <mat-header-cell *matHeaderCellDef [ngClass]="'columnButton'"></mat-header-cell>
+                  <mat-cell *matCellDef="let element" [ngClass]="'columnButton'">
+                    <a (click)="editPost(element.idAlumno)" type="button">
+                      <mat-icon class="icon">edit</mat-icon>
+                    </a>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                  <mat-header-cell *matHeaderCellDef [ngClass]="'columnButton'"></mat-header-cell>
+                  <mat-cell *matCellDef="let element" [ngClass]="'columnButton'">
+                    <a (click)="deleteClase(element.idAlumno)" type="button">
+                      <mat-icon class="icon">delete</mat-icon>
+                    </a>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

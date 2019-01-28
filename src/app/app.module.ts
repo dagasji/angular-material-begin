@@ -23,6 +23,9 @@ import { AuthService } from './auth.service';
 import { ClaseGestionComponent } from './components/clases/clase-gestion/clase-gestion.component';
 import { ClaseDetalleComponent } from './components/clases/clase-detalle/clase-detalle.component';
 import { DialogAceptarComponent } from './components/comun/dialog-aceptar/dialog-aceptar.component';
+import { ClaseDetalleAlumnosComponent } from './components/clases/clase-detallealumnos/clase-detallealumnos.component';
+import { AlumnoGestionComponent } from './components/alumnos/alumno-gestion/alumno-gestion.component';
+import { AlumnoMockService } from './services/mocks/data.service';
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { DialogAceptarComponent } from './components/comun/dialog-aceptar/dialog
 	  PostDialogComponent,
 	  ClaseGestionComponent,
 	  ClaseDetalleComponent,
-	  DialogAceptarComponent
+	  DialogAceptarComponent,
+	  ClaseDetalleAlumnosComponent,
+	  AlumnoGestionComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { DialogAceptarComponent } from './components/comun/dialog-aceptar/dialog
   ],
   providers: [
     DataService, 
-    AuthService],
+    AuthService,
+    AlumnoMockService],
   bootstrap: [AppComponent],
   entryComponents: [
     PostDialogComponent, 
